@@ -1,3 +1,6 @@
+
+//addeventlistener=DOM이 완성되면 없던 이벤트를 내가 넣겠다. 
+//값을 가지고 오고 싶거나 넣고 싶을때 inner.HTML or text.content 사용
 document.addEventListener("DOMContentLoaded", () => {
     const sel1 = document.querySelector('#sel1')
     const sel2 = document.querySelector('#sel2')
