@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (item != '🥭') temp.push(item);        //망고 이모지를 
                         break;
                     case '바나나':
-                        if (item != '🍌') temp.push(item);
+                        if (item != '🍌') temp.push(item);        //배열에 값을 넣을떄 push
                         break;
                     case '오렌지':
                         if (item != '🍊') temp.push(item);
@@ -84,31 +84,46 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let cbt3 of cbt3s) {
         cbt3.addEventListener('click', (e) => {
             e.preventDefault();
-            let gubun = cbt3.textContent.split('->')[0] //split은 문자열을 나눔, '->'을 기준으로 딸기, 당근으로 나눔. [0]:문자열 두 개 중 0번째인 딸기만 사용하겠다. '딸기'만 case문에 쳐도 인식할 수 있게 만듦
-            //console.log(gubun)
+            let gubun = cbt3.textContent.split('->')[0].trim() //split은 문자열을 나눔, '->'을 기준으로 딸기, 당근으로 나눔. [0]:문자열 두 개 중 0번째인 딸기만 사용하겠다. '딸기'만 case문에 쳐도 인식할 수 있게 만듦
+            let temp = [];                                     //.trim()은 혹시나 공백이 있을시 그걸 없애줌.
 
-            let temp = [];
-            for (let item of arr) {                                     //arr에 들어오는 모든 아이템(이모지)를 확인하겠다.
-                switch (gubun) {                                       //gubun은 배열
-                    case '망고':                                      //'망고'를 선택하면,
-                        if (item == '🥭') temp.push('🥑');          //item이 망고 이모지면 아보카도 이모지로 교체해라.                   
-                        else temp.push(item);                       //그렇지 않으면 그대로 망고 이모지를 출력해라.
-                        break;
-                    case '바나나':
-                        if (item == '🍌') temp.push('🥒');
-                        else temp.push(item);
-                        break;
-                    case '오렌지':
-                        if (item == '🍊') temp.push('🥬');
-                        else temp.push(item);
-                        break;
-                    case '딸기':
-                        if (item == '🍓') temp.push('🥕');
-                        else temp.push(item);
-                        break;
-                }console.log(cbt3, arr)
-            }
-            arr = temp;                                         //temp를 arr에 집어넣어라.
+            switch(gubun){
+                     case '망고' :
+                         arr = arr.map((item) => item == '🥭'? '🥑' : item); 
+                         break;
+                     case '바나나' :
+                         arr = arr.map((item) => item == '🍌'? '🥒' : item);
+                         break;
+                     case '오렌지' :
+                         arr = arr.map((item) => item == '🍊'? '🥬' : item);
+                         break;
+                     case '딸기' :
+                         arr = arr.map((item) => item == '🍓'? '🥕' : item);
+                         break;
+                 } console.log(cbt3,arr)
+
+            // let temp = [];
+            // for (let item of arr) {                                     //arr에 들어오는 모든 아이템(이모지)를 확인하겠다.
+            //     switch (gubun) {                                       //gubun은 배열
+            //         case '망고':                                      //'망고'를 선택하면,
+            //             if (item == '🥭') temp.push('🥑');          //item이 망고 이모지면 아보카도 이모지로 교체해라.                   
+            //             else temp.push(item);                       //그렇지 않으면 그대로 망고 이모지를 출력해라.
+            //             break;
+            //         case '바나나':
+            //             if (item == '🍌') temp.push('🥒');
+            //             else temp.push(item);
+            //             break;
+            //         case '오렌지':
+            //             if (item == '🍊') temp.push('🥬');
+            //             else temp.push(item);
+            //             break;
+            //         case '딸기':
+            //             if (item == '🍓') temp.push('🥕');
+            //             else temp.push(item);
+            //             break;
+            //     }console.log(cbt3, arr)
+            // }
+            //arr = temp;                                       //temp를 arr에 집어넣어라. (map으로 만들면 넣을 필요 없다. 왜냐면 바로 arr = arr.map으로 넣었으니깐)
             txt1.value = arr.join('');                         //join(',');이면 이모지들 사이에 ,가 들어간 상태로 출력.
         });
     }
